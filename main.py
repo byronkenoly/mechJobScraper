@@ -81,24 +81,27 @@ def fuzuFunc():
         fuzu = requests.get('https://www.fuzu.com/kenya/job?filters[term]=mechanical%20engineering&filters[job_id]=452453&page={}'.format(i)).text
 
         fuzuSoup = BeautifulSoup(fuzu, 'lxml')
-        fuzuJobs = fuzuSoup.find_all('section', 'job-list')
+        fuzuJobs = fuzuSoup.find_all('a', class_ = 'Card__StyledDiv-sc-uckied-0 logKwD b2c-card clickable')
 
         for job in fuzuJobs:
             global count
             datePosted = job.find('p', class_ = 'Text__StyledText-sc-152w2ki-0 bpWsQZ b2c-text').text
 
             if 'remaining' or 'today' in datePosted:
-                count += 1
-                companyName = job.find('p', class_ = 'Text__StyledText-sc-152w2ki-0 MDWeZ b2c-text').text
-                jobTitle = job.find('h6', class_ = 'Title__StyledTitle-sc-5s9ddm-0 cvLYDq title').text
-                jobLocation = job.find('p', class_ = 'Text__StyledText-sc-152w2ki-0 ckLUZM b2c-text').text
-
-                print(companyName)
-                print(jobTitle)
-                print(jobLocation)
-                print(datePosted)
-                print("Website: fuzu.com")
-                printLine()
+                try:
+                    companyName = job.find('p', class_ = 'Text__StyledText-sc-152w2ki-0 MDWeZ b2c-text').text
+                    jobTitle = job.find('h6', class_ = 'Title__StyledTitle-sc-5s9ddm-0 cvLYDq title').text
+                    jobLocation = job.find('p', class_ = 'Text__StyledText-sc-152w2ki-0 ckLUZM b2c-text').text
+                    count += 1
+                
+                    print(companyName)
+                    print(jobTitle)
+                    print(jobLocation)
+                    print(datePosted)
+                    print("Website: fuzu.com")
+                    printLine()
+                except AttributeError:
+                    pass
 
 
 jwkFunc()
