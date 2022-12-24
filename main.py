@@ -28,7 +28,7 @@ def jwkFunc():
         
         if 'Dec' in datePosted:
             count += 1
-            jobTitle = job.find('a').text
+            jobTitle = job.a.text
             jobDescription = job.find('div', class_ = 'lista').text
 
             print(jobTitle)
