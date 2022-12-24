@@ -31,9 +31,9 @@ def jwkFunc():
             jobTitle = job.a.text
             jobDescription = job.find('div', class_ = 'lista').text
 
-            print(jobTitle)
-            print(jobDescription)
-            print(datePosted)
+            print(f'Job Title: {jobTitle}')
+            print(f'Description: {jobDescription}')
+            print(f'Date: {datePosted}')
             print("Website: jobwebkenya.com")
             printLine()
 
@@ -67,12 +67,12 @@ def myjobmagFunc():
 
             if 'December' in datePosted:
                 count += 1
-                jobTitle = job.find('a').text
+                jobTitle = job.a.text
                 jobDescription = job.find('li', class_ = 'job-desc').text
 
-                print(jobTitle)
-                print(jobDescription)
-                print(datePosted)
+                print(f'Job Title: {jobTitle}')
+                print(f'Description: {jobDescription}')
+                print(f'Date: {datePosted}')
                 print("Website: myjobmag.co.ke")
                 printLine()
 
@@ -94,10 +94,10 @@ def fuzuFunc():
                     jobLocation = job.find('p', class_ = 'Text__StyledText-sc-152w2ki-0 ckLUZM b2c-text').text
                     count += 1
                 
-                    print(companyName)
-                    print(jobTitle)
-                    print(jobLocation)
-                    print(datePosted)
+                    print(f'Company: {companyName}')
+                    print(f'Job title: {jobTitle}')
+                    print(f'Location: {jobLocation}')
+                    print(f'Date: {datePosted}')
                     print("Website: fuzu.com")
                     printLine()
                 except AttributeError:
