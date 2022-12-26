@@ -8,7 +8,7 @@ Scrapes the web for recently posted mechanical engineering jobs in Kenya
 
     ```python3 -m venv venv```
     
-3. Activate virtual environment with following commands. Check [here](https://docs.python.org/3/library/venv.html)
+3. Check [here](https://docs.python.org/3/library/venv.html) for more info on python virtual environments. Activate virtual environment with following commands. 
 
     ```source venv/bin/activate``` for linux distros
     
