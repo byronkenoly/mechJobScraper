@@ -7,8 +7,8 @@ Scrapes the web for recently posted mechanical engineering jobs in Kenya
 2. Create virtual environment and activate it  
 3. Install required dependencies (BeautifulSoup, lxml, requests) from requirement.txt file using the command 
 
-```pip install -r requirement.txt```
+    ```pip install -r requirement.txt```
 
-4. Internet connection required to run python file Run the command below in your terminal
+4.  Run the command below in your terminal to get top job suggestions.Internet connection required
 
-```python main.py```
+    ```python main.py```
