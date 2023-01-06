@@ -1,3 +1,6 @@
+from month import jwkMonth
+from month import mjmMonth
+from month import currentMonth
 from bs4 import BeautifulSoup
 import requests
 
@@ -21,12 +24,31 @@ brighterJobs = brighterSoup.find_all('div', class_ = 'mx-5 md:mx-0 flex flex-wra
 #number of jobs found
 count = 0
 
-def jwkFunc():
+#creating instance of the classes
+jwk_instance = jwkMonth()
+mjm_instance = mjmMonth()
+
+#jwkCurr - job web kenya current month
+#mjmCurr - my job mag current month
+jwkCurr = jwk_instance.day(currentMonth)
+mjmCurr = mjm_instance.day(currentMonth)
+
+if currentMonth == 1:
+    pastMonth = 12
+else:
+    pastMonth = currentMonth - 1
+
+#jwkLast - job web kenya last month
+#mjmLast - my job mag last month
+jwkLast = jwk_instance.day(pastMonth)
+mjmLast = jwk_instance.day(pastMonth) 
+
+def jwkFunc(current_month, last_month):
     for job in jwkJobs:
         global count
         datePosted = job.find('span', class_ = 'year').text
         
-        if 'Dec' in datePosted:
+        if current_month or last_month in datePosted:
             count += 1
             jobTitle = job.a.text
             jobDescription = job.find('div', class_ = 'lista').text
@@ -53,7 +75,7 @@ def brighterFunc():
             print("Website: brightermonday.co.ke")
             printLine()
 
-def myjobmagFunc():
+def myjobmagFunc(current_month, last_month):
     for i in range(1, 6):
         myjobmag = requests.get('https://www.myjobmag.co.ke/jobs-by-field/engineering/{}'.format(i)).text
 
@@ -65,7 +87,7 @@ def myjobmagFunc():
             global count
             datePosted = job.find('li', id = 'job-date').text
 
-            if 'December' in datePosted:
+            if current_month or last_month in datePosted:
                 count += 1
                 jobTitle = job.a.text
                 jobDescription = job.find('li', class_ = 'job-desc').text
@@ -104,9 +126,9 @@ def fuzuFunc():
                     pass
 
 
-jwkFunc()
+jwkFunc(jwkCurr, jwkLast)
 brighterFunc()
-myjobmagFunc()
+myjobmagFunc(mjmCurr, mjmLast)
 fuzuFunc()
 
 print("Number of jobs found with MECHANICAL ENGINEER keyword: ", count)
