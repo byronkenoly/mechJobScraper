@@ -20,6 +20,8 @@ Scrapes the web for recently posted mechanical engineering jobs in Kenya
 
     ```pip install -r requirements.txt```
 
-5.  Run the command below in your terminal to get top job suggestions.Internet connection required
+5.  Run the command below in your terminal to get job suggestions. Standard output redirected to text file. Internet connection required
 
-    ```python main.py```
+    ```python main.py > jobs.txt```
+
+6.  Open jobs.txt
